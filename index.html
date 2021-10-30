@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculo Curva</title>
+
+    <link rel="stylesheet" href="grafica.css">
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+
+<body>
+
+    <div class="row">
+        <div class="col s12" style="text-align:center;margin-bottom: 10px;">
+            <h4>Cálculo de Curva de Oscilación para Generador Síncrono
+                
+            </h4>
+        </div>
+        <div class="col s3">
+            <div class="col s12  z-depth-3">
+                <h5 class="blue-text darken-4" style="text-align:center;">Ingrese los Valores</h5>
+                <div class="input-field col s3">
+                    <input value="5000" id="n" type="text" class="validate">
+                    <label class="active" for="n">n</label>
+                </div>
+                <div class="input-field col s3">
+                    <input value="7" id="H" type="text" class="validate">
+                    <label class="active" for="H">H</label>
+                </div>
+                <div class="input-field col s3">
+                    <input value="0.001" id="dt" type="text" class="validate">
+                    <label class="active" for="dt">dt</label>
+                </div>
+                <div class="input-field col s3">
+                    <input value="60" id="f" type="text" class="validate">
+                    <label class="active" for="f">f</label>
+                </div>
+                <div class="input-field col s3">
+                    <input value="16.19" id="Do" type="text" class="validate">
+                    <label class="active" for="Do">Do</label>
+                </div>
+                <div class="input-field col s3">
+                    <input value="4" id="Pm" type="text" class="validate">
+                    <label class="active" for="Pm">Pm</label>
+                </div>
+                <div class="input-field col s3">
+                    <input value="6" id="Pe" type="text" class="validate">
+                    <label class="active" for="Pe">Pe</label>
+                </div>
+                <div class="input-field col s3">
+                    <input value="0.755" id="y" type="text" class="validate">
+                    <label class="active" for="y">y</label>
+                </div>
+            </div>
+            <div class="col s12" style='margin-top: 10px;text-align:center;'>
+                <button class="btn waves-effect waves-light" onclick="myFunction()">Calcular
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </div>
+        <div class="col s9">
+            <div class="col s12  z-depth-3" id="container"></div>
+        </div>
+    </div>
+    <div>
+
+
+
+        <!-- Realizo los Calculos -->
+        <script src="Clase_Grafica.js"></script>
+        <script>
+            const test1 = new Grafica(5000, 7, 0.001, 60, 16.19, 4, 5, 0.755)
+            test1.Calcular();
+            console.log(test1.ejex)
+            console.log(test1.ejey)
+        </script>
+        <!-- Muestro los Calculos en la grafica -->
+        <script src="grafica.js"></script>
+
+        <script>
+            function myFunction() {
+                v1= parseFloat(document.getElementById("n").value);
+                v2= parseFloat(document.getElementById("H").value);
+                v3= parseFloat(document.getElementById("dt").value);
+                v4= parseFloat(document.getElementById("f").value);
+                v5= parseFloat(document.getElementById("Do").value);
+                v6= parseFloat(document.getElementById("Pm").value);
+                v7= parseFloat(document.getElementById("Pe").value);
+                v8= parseFloat(document.getElementById("y").value);
+
+                const test1 = new Grafica(v1, v2, v3, v4, v5, v6, v7, v8)
+                test1.Calcular();
+                console.log(test1.ejex)
+                console.log(test1.ejey)
+                
+                grap.xAxis[0].setCategories(test1.ejex);
+                grap.series[0].setData(test1.ejey);                
+            }
+
+        </script>
+
+        
+</body>
+
+</html>
